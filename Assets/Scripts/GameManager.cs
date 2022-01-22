@@ -35,18 +35,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("ToggleLight"))
+        if (Input.GetButtonDown("ToggleLight"))
         {
             clueMode = !clueMode;
             flashlight.SetLightColours(clueMode ? Flashlight.LightType.UV : Flashlight.LightType.Standard);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("FocusLight"))
+        {
+            flashlight.FocusBeam(true);
+        }
+        else if (Input.GetButtonUp("FocusLight"))
+        {
+            flashlight.FocusBeam(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             RenderSettings.skybox = safeSky;
         }
 
-        if(Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             RenderSettings.skybox = darkSky;
         }
