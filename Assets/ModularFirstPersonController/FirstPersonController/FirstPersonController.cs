@@ -122,7 +122,7 @@ public class FirstPersonController : MonoBehaviour
     public bool enableLean = true;
     public KeyCode leftLeanKey = KeyCode.Q;
     public KeyCode rightLeanKey = KeyCode.E;
-    public float leanDistance = 1.25f;
+    public float leanDistance = 2f;
     public float leanRoation = 6.5f;
 
     // Internal Variables
@@ -546,42 +546,40 @@ public class FirstPersonController : MonoBehaviour
 
     private void LeanLeft()
     {
-        // Stands player up to full height
-        // Brings walkSpeed back up to original speed
+        // Unleans Player
         if (isLeftLeant)
         {
             joint.localPosition += new Vector3(leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, -leanRoation));
-
+            flashlight.GetComponent<Flashlight>().FocusBeam(false);
             isLeftLeant = false;
         }
-        // Crouches player down to set height
-        // Reduces walkSpeed
+        // Leans player to the left
         else
         {
             joint.localPosition -= new Vector3(leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, leanRoation));
+            flashlight.GetComponent<Flashlight>().FocusBeam(true);
             isLeftLeant = true;
         }
     }
 
     private void LeanRight()
     {
-        // Stands player up to full height
-        // Brings walkSpeed back up to original speed
+        // Unleans player
         if (isRightLeant)
         {
             joint.localPosition += new Vector3(-leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, leanRoation));
-
+            flashlight.GetComponent<Flashlight>().FocusBeam(false);
             isRightLeant = false;
         }
-        // Crouches player down to set height
-        // Reduces walkSpeed
+        // Leans player to the right
         else
         {
             joint.localPosition -= new Vector3(-leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, -leanRoation));
+            flashlight.GetComponent<Flashlight>().FocusBeam(true);
             isRightLeant = true;
         }
     }
@@ -811,7 +809,7 @@ public class FirstPersonControllerEditor : Editor
         GUI.enabled = fpc.enableLean;
         fpc.leftLeanKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Left Lean Key", "Determines what key is used to lean to the left."), fpc.leftLeanKey);
         fpc.rightLeanKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Right Lean Key", "Determines what key is used to lean to the right."), fpc.rightLeanKey);
-        fpc.leanDistance = EditorGUILayout.Slider(new GUIContent("Lean Distance", "Determines how far the character leans"), fpc.leanDistance, .1f, 2);
+        fpc.leanDistance = EditorGUILayout.Slider(new GUIContent("Lean Distance", "Determines how far the character leans"), fpc.leanDistance, .2f, 4);
         fpc.leanRoation = EditorGUILayout.Slider(new GUIContent("Lean Rotation", "Determines how far the character leans"), fpc.leanRoation, .25f, 10);
         GUI.enabled = true;
 
