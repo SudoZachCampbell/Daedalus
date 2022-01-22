@@ -116,6 +116,21 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 originalScale;
 
     #endregion
+
+    #region Leaning
+
+    public bool enableLean = true;
+    public KeyCode leftLeanKey = KeyCode.Q;
+    public KeyCode rightLeanKey = KeyCode.E;
+    public float leanDistance = 1.25f;
+    public float leanRoation = 6.5f;
+
+    // Internal Variables
+    private bool isLeftLeant = false;
+    private bool isRightLeant = false;
+
+    #endregion
+
     #endregion
 
     #region Head Bob
@@ -359,6 +374,35 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
+        #region Lean
+
+        if (enableLean)
+        {
+            if (Input.GetKeyDown(leftLeanKey))
+            {
+                isLeftLeant = false;
+                LeanLeft();
+            }
+            else if (Input.GetKeyUp(leftLeanKey))
+            {
+                isLeftLeant = true;
+                LeanLeft();
+            }
+
+            if (Input.GetKeyDown(rightLeanKey))
+            {
+                isRightLeant = false;
+                LeanRight();
+            }
+            else if (Input.GetKeyUp(rightLeanKey))
+            {
+                isRightLeant = true;
+                LeanRight();
+            }
+        }
+
+        #endregion
+
         CheckGround();
 
         if (enableHeadBob)
@@ -500,35 +544,80 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    private void HeadBob()
+    private void LeanLeft()
     {
-        if (isWalking)
+        // Stands player up to full height
+        // Brings walkSpeed back up to original speed
+        if (isLeftLeant)
         {
-            // Calculates HeadBob speed during sprint
-            if (isSprinting)
-            {
-                timer += Time.deltaTime * (bobSpeed + sprintSpeed);
-            }
-            // Calculates HeadBob speed during crouched movement
-            else if (isCrouched)
-            {
-                timer += Time.deltaTime * (bobSpeed * speedReduction);
-            }
-            // Calculates HeadBob speed during walking
-            else
-            {
-                timer += Time.deltaTime * bobSpeed;
-            }
-            // Applies HeadBob movement
-            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
-            flashlight.transform.localPosition = new Vector3(flashlightOriginalPos.x + Mathf.Sin(timer) * bobAmount.x / 5, flashlightOriginalPos.y + Mathf.Sin(timer) * bobAmount.y / 5, flashlightOriginalPos.z + Mathf.Sin(timer) * bobAmount.z / 5);
+            joint.localPosition += new Vector3(leanDistance, 0, 0);
+            joint.Rotate(new Vector3(0, 0, -leanRoation));
+
+            isLeftLeant = false;
         }
+        // Crouches player down to set height
+        // Reduces walkSpeed
         else
         {
-            // Resets when play stops moving
-            timer = 0;
-            joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
-            flashlight.transform.localPosition = new Vector3(Mathf.Lerp(flashlight.transform.localPosition.x, flashlightOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(flashlight.transform.localPosition.y, flashlightOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(flashlight.transform.localPosition.z, flashlightOriginalPos.z, Time.deltaTime * bobSpeed));
+            joint.localPosition -= new Vector3(leanDistance, 0, 0);
+            joint.Rotate(new Vector3(0, 0, leanRoation));
+            isLeftLeant = true;
+        }
+    }
+
+    private void LeanRight()
+    {
+        // Stands player up to full height
+        // Brings walkSpeed back up to original speed
+        if (isRightLeant)
+        {
+            joint.localPosition += new Vector3(-leanDistance, 0, 0);
+            joint.Rotate(new Vector3(0, 0, leanRoation));
+
+            isRightLeant = false;
+        }
+        // Crouches player down to set height
+        // Reduces walkSpeed
+        else
+        {
+            joint.localPosition -= new Vector3(-leanDistance, 0, 0);
+            joint.Rotate(new Vector3(0, 0, -leanRoation));
+            isRightLeant = true;
+        }
+    }
+
+    private void HeadBob()
+    {
+        if (!isLeftLeant && !isRightLeant)
+        {
+            if (isWalking)
+            {
+                // Calculates HeadBob speed during sprint
+                if (isSprinting)
+                {
+                    timer += Time.deltaTime * (bobSpeed + sprintSpeed);
+                }
+                // Calculates HeadBob speed during crouched movement
+                else if (isCrouched)
+                {
+                    timer += Time.deltaTime * (bobSpeed * speedReduction);
+                }
+                // Calculates HeadBob speed during walking
+                else
+                {
+                    timer += Time.deltaTime * bobSpeed;
+                }
+                // Applies HeadBob movement
+                joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
+                flashlight.transform.localPosition = new Vector3(flashlightOriginalPos.x + Mathf.Sin(timer) * bobAmount.x / 5, flashlightOriginalPos.y + Mathf.Sin(timer) * bobAmount.y / 5, flashlightOriginalPos.z + Mathf.Sin(timer) * bobAmount.z / 5);
+            }
+            else
+            {
+                // Resets when play stops moving
+                timer = 0;
+                joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
+                flashlight.transform.localPosition = new Vector3(Mathf.Lerp(flashlight.transform.localPosition.x, flashlightOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(flashlight.transform.localPosition.y, flashlightOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(flashlight.transform.localPosition.z, flashlightOriginalPos.z, Time.deltaTime * bobSpeed));
+            }
         }
     }
 }
@@ -709,6 +798,21 @@ public class FirstPersonControllerEditor : Editor
         fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
         fpc.crouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.crouchHeight, .1f, 1);
         fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.speedReduction, .1f, 1);
+        GUI.enabled = true;
+
+        #endregion
+
+        #region Lean
+
+        GUILayout.Label("Lean", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleLeft, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
+
+        fpc.enableLean = EditorGUILayout.ToggleLeft(new GUIContent("Enable Lean", "Determines if the player is allowed to lean."), fpc.enableLean);
+
+        GUI.enabled = fpc.enableLean;
+        fpc.leftLeanKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Left Lean Key", "Determines what key is used to lean to the left."), fpc.leftLeanKey);
+        fpc.rightLeanKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Right Lean Key", "Determines what key is used to lean to the right."), fpc.rightLeanKey);
+        fpc.leanDistance = EditorGUILayout.Slider(new GUIContent("Lean Distance", "Determines how far the character leans"), fpc.leanDistance, .1f, 2);
+        fpc.leanRoation = EditorGUILayout.Slider(new GUIContent("Lean Rotation", "Determines how far the character leans"), fpc.leanRoation, .25f, 10);
         GUI.enabled = true;
 
         #endregion
