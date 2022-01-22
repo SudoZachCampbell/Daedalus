@@ -39,11 +39,11 @@ public class Flashlight : MonoBehaviour
         }
     }
 
-    public void FocusBeam(bool focused)
+    public void FocusBeam(bool focus)
     {
         foreach (var light in spotLights.Select(x => x.GetComponent<Light>()))
         {
-            if (!focused)
+            if (focus)
             {
                 light.range = focusRange;
                 light.spotAngle = focusSpotAngle;
