@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField]
     private GameObject flashlightObj;
+    [SerializeField]
+    private Material safeSky;
+    [SerializeField]
+    private Material darkSky;
     private Flashlight flashlight;
     private bool clueMode = false;
     // Start is called before the first frame update
@@ -36,5 +40,16 @@ public class GameManager : MonoBehaviour
             clueMode = !clueMode;
             flashlight.SetLightColours(clueMode ? Flashlight.LightType.UV : Flashlight.LightType.Standard);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            RenderSettings.skybox = safeSky;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            RenderSettings.skybox = darkSky;
+        }
     }
+
 }
