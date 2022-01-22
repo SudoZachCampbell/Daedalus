@@ -551,7 +551,6 @@ public class FirstPersonController : MonoBehaviour
         {
             joint.localPosition += new Vector3(leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, -leanRoation));
-            flashlight.GetComponent<Flashlight>().FocusBeam(false);
             isLeftLeant = false;
         }
         // Leans player to the left
@@ -559,7 +558,6 @@ public class FirstPersonController : MonoBehaviour
         {
             joint.localPosition -= new Vector3(leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, leanRoation));
-            flashlight.GetComponent<Flashlight>().FocusBeam(true);
             isLeftLeant = true;
         }
     }
@@ -571,7 +569,6 @@ public class FirstPersonController : MonoBehaviour
         {
             joint.localPosition += new Vector3(-leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, leanRoation));
-            flashlight.GetComponent<Flashlight>().FocusBeam(false);
             isRightLeant = false;
         }
         // Leans player to the right
@@ -579,7 +576,6 @@ public class FirstPersonController : MonoBehaviour
         {
             joint.localPosition -= new Vector3(-leanDistance, 0, 0);
             joint.Rotate(new Vector3(0, 0, -leanRoation));
-            flashlight.GetComponent<Flashlight>().FocusBeam(true);
             isRightLeant = true;
         }
     }
