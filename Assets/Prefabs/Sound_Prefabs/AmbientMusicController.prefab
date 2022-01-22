@@ -88,7 +88,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -141,6 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ambientOne: {fileID: 8300000, guid: 226a5ce15bfcd914298357059bb06fed, type: 3}
-  ambientTwo: {fileID: 8300000, guid: 727c90cef4c97c545a8860dda29b53b1, type: 3}
+  ambientTwo: {fileID: 8300000, guid: af6edb08e1f686041a968120f681aff9, type: 3}
   ambientThree: {fileID: 8300000, guid: 56acb4f0a5b596442bfb479246925567, type: 3}
   ambientFour: {fileID: 8300000, guid: 08b4ba6cd22a9ab4986a13fff034f354, type: 3}

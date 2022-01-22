@@ -512,6 +512,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5645355462442102000, guid: c639b7473b32c71cfae864b1ffecc774, type: 3}
   m_PrefabInstance: {fileID: 177302331}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1201374569 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  m_PrefabInstance: {fileID: 1923621520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1457361878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -574,7 +579,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1201374569}
     m_Modifications:
     - target: {fileID: 1704633446664965854, guid: 8154b8c24c3e3ef45912c53395a424f7, type: 3}
       propertyPath: m_Name
@@ -582,19 +587,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1704633446664965856, guid: 8154b8c24c3e3ef45912c53395a424f7, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1704633446664965856, guid: 8154b8c24c3e3ef45912c53395a424f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.7
+      value: -16.919998
       objectReference: {fileID: 0}
     - target: {fileID: 1704633446664965856, guid: 8154b8c24c3e3ef45912c53395a424f7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.71
+      value: -1.8400002
       objectReference: {fileID: 0}
     - target: {fileID: 1704633446664965856, guid: 8154b8c24c3e3ef45912c53395a424f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.974218
+      value: -1.1000004
       objectReference: {fileID: 0}
     - target: {fileID: 1704633446664965856, guid: 8154b8c24c3e3ef45912c53395a424f7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -782,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Name
-      value: FirstPersonController
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6283055052603520812, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Intensity
