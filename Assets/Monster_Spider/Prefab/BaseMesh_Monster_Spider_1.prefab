@@ -1318,12 +1318,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6114875344848619775}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7739748b1ba0074781c469dfab11efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+  points: []
 --- !u!1 &6123089353742348179
 GameObject:
   m_ObjectHideFlags: 0

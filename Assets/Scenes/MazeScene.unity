@@ -4622,6 +4622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashlightObj: {fileID: 1923621521}
+  clues: {fileID: 0}
 --- !u!4 &2046799670
 Transform:
   m_ObjectHideFlags: 0

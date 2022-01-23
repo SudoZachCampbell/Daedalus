@@ -19,7 +19,7 @@ public class MonsterSight : MonoBehaviour
         reset -= Time.deltaTime;
         if (reset < 0)
         {
-            monster.GetComponent<MonsterMovement>().enabled = false;
+            monster.GetComponent<MonsterMovement>().foundPlayer = false;
         }            
     }
 
@@ -27,7 +27,7 @@ public class MonsterSight : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            monster.GetComponent<MonsterMovement>().enabled = true;
+            monster.GetComponent<MonsterMovement>().foundPlayer = true;
             reset = MONSTER_SLEEP;
         }
     }
