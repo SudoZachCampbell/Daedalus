@@ -4511,6 +4511,10 @@ PrefabInstance:
       value: Portal1
       objectReference: {fileID: 0}
     - target: {fileID: 3284817767720520324, guid: b3ce158da055e3b49bba6830ce08c461, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284817767720520324, guid: b3ce158da055e3b49bba6830ce08c461, type: 3}
       propertyPath: targetPortal
       value: 
       objectReference: {fileID: 1199380023}
