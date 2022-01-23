@@ -25,10 +25,8 @@ public class MonsterSight : MonoBehaviour
 
     void OnTriggerEnter(Collider collision) 
     {
-        Debug.Log("COLLIDED");
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("COLLIDED");
             monster.GetComponent<MonsterMovement>().enabled = true;
             reset = MONSTER_SLEEP;
         }
