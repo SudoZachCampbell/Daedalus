@@ -35,6 +35,7 @@ public class Portal : MonoBehaviour
         // Assign render texture to portal camera
 
         portalCamera.targetTexture = viewthroughRenderTexture;
+        portalCamera.GetComponent<Skybox>().material = type == PortalType.Light ? darkSky : safeSky;
 
         // Cache the main camera
 
@@ -80,6 +81,7 @@ public class Portal : MonoBehaviour
 
     }
 
+
     public static Vector3 TransformPositionBetweenPortals(Portal sender, Portal target, Vector3 position)
     {
         return
@@ -104,12 +106,13 @@ public class Portal : MonoBehaviour
             if (type == PortalType.Light)
             {
                 mainCamera.GetComponent<Skybox>().material = darkSky;
-                RenderSettings.ambientLight = new Color(0, 0, 0);
+                //RenderSettings.ambientLight = new Color(0, 0, 0);
+                //mainCamera.cullingMask &= ~(1 << LayerMask.NameToLayer("Sun Layer"));
             }
             else
             {
                 mainCamera.GetComponent<Skybox>().material = safeSky;
-                RenderSettings.ambientLight = new Color(1, 1, 1);
+                //mainCamera.cullingMask |= 1 << LayerMask.NameToLayer("Sun Layer");
             }
             var spawnerTransform = targetPortal.transform.Find("Spawner").transform;
             other.gameObject.transform.position = new Vector3(spawnerTransform.position.x, other.gameObject.transform.position.y, spawnerTransform.position.z);
