@@ -146,7 +146,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.6, g: 0.61960787, b: 0.29411766, a: 255}
   m_Intensity: 3.1
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 93
   m_InnerSpotAngle: 74.2809
   m_CookieSize: 10
@@ -246,6 +246,8 @@ MonoBehaviour:
   - {fileID: 129314}
   - {fileID: 187386}
   - {fileID: 197558}
+  focusRange: 60
+  focusSpotAngle: 20
 --- !u!1 &187386
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +292,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.88235295, g: 0.7176471, b: 0.5137255, a: 1}
   m_Intensity: 3.1
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 93
   m_InnerSpotAngle: 74.2809
   m_CookieSize: 10
@@ -383,7 +385,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.67058825, g: 0.35686275, b: 0.15686275, a: 1}
   m_Intensity: 3
-  m_Range: 10
+  m_Range: 20
   m_SpotAngle: 93
   m_InnerSpotAngle: 74.2809
   m_CookieSize: 10
