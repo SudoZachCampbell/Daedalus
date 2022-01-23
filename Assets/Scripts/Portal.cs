@@ -19,6 +19,7 @@ public class Portal : MonoBehaviour
     private Camera mainCamera;
     public bool portalDisabled = false;
     public Collider boxCollider;
+    public bool flip = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -110,8 +111,9 @@ public class Portal : MonoBehaviour
                 mainCamera.GetComponent<Skybox>().material = safeSky;
                 RenderSettings.ambientLight = new Color(1, 1, 1);
             }
-
-            other.gameObject.transform.position = new Vector3(type == PortalType.Light ? targetPortal.transform.position.x - 0.2f : targetPortal.transform.position.x + 0.2f, other.gameObject.transform.position.y, other.transform.position.z);
+            var spawnerTransform = targetPortal.transform.Find("Spawner").transform;
+            other.gameObject.transform.position = new Vector3(spawnerTransform.position.x, other.gameObject.transform.position.y, spawnerTransform.position.z);
+            other.gameObject.transform.rotation = spawnerTransform.rotation;
             StartCoroutine(PortalCooldown());
         }
     }
