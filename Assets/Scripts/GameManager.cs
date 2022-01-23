@@ -8,12 +8,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject flashlightObj;
     private Flashlight flashlight;
+
     private bool clueMode = false;
+
+    [SerializeField]
+    private GameObject clues;
     // Start is called before the first frame update
     void Start()
     {
         CreateSingleton();
         flashlight = flashlightObj.GetComponent<Flashlight>();
+        toggleClues(false);
     }
 
     private void CreateSingleton()
@@ -35,6 +40,7 @@ public class GameManager : MonoBehaviour
         {
             clueMode = !clueMode;
             flashlight.SetLightColours(clueMode ? Flashlight.LightType.UV : Flashlight.LightType.Standard);
+            toggleClues(clueMode);
         }
 
         if (Input.GetButtonDown("FocusLight"))
@@ -45,6 +51,11 @@ public class GameManager : MonoBehaviour
         {
             flashlight.FocusBeam(false);
         }
+    }
+
+    private void toggleClues(bool clueMode)
+    {
+        clues.SetActive(clueMode);
     }
 
 }
