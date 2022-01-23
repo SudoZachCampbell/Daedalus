@@ -28,6 +28,7 @@ public class MonsterSight : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             monster.GetComponent<MonsterMovement>().foundPlayer = true;
+            Debug.Log(monster.GetComponent<MonsterMovement>().foundPlayer.ToString());
             reset = MONSTER_SLEEP;
         }
     }
