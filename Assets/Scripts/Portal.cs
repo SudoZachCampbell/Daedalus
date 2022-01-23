@@ -50,6 +50,15 @@ public class Portal : MonoBehaviour
         // Position camera
 
         portalCamera.transform.SetPositionAndRotation(virtualPosition, virtualRotation);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            portalCamera.fieldOfView = Mathf.Lerp(portalCamera.fieldOfView, 60, 10 * Time.deltaTime);
+
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            portalCamera.fieldOfView = 40;
+        }
     }
 
     private void OnDestroy()
