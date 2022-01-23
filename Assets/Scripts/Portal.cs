@@ -35,6 +35,7 @@ public class Portal : MonoBehaviour
         // Assign render texture to portal camera
 
         portalCamera.targetTexture = viewthroughRenderTexture;
+        portalCamera.GetComponent<Skybox>().material = type == PortalType.Light ? darkSky : safeSky;
 
         // Cache the main camera
 
