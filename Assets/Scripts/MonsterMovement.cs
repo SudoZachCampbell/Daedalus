@@ -7,7 +7,7 @@ public class MonsterMovement : MonoBehaviour
     public GameObject player;
     private NavMeshAgent navmesh;
     public Transform[] points;
-    int destPoint = 0;
+    int destPoint = -1;
 
     public bool foundPlayer = false;
     // Use this for initialization
@@ -45,5 +45,6 @@ public class MonsterMovement : MonoBehaviour
         if (destPoint >= points.Length) {
             destPoint = 0;
         }
+        Debug.Log(destPoint);
     }
 }
