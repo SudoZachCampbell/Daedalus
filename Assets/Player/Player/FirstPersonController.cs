@@ -449,6 +449,10 @@ public class FirstPersonController : MonoBehaviour
                 {
                     isSprinting = true;
 
+                    // Disable flashlight focusing
+                    Flashlight flashlightComp = flashlight.GetComponent<Flashlight>();
+                    flashlightComp.canFocus = false;
+                    flashlightComp.FocusBeam(false);
                     if (isCrouched)
                     {
                         Crouch();
@@ -466,6 +470,10 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 isSprinting = false;
+
+                // Enable Flashlight focusing
+                Flashlight flashlightComp = flashlight.GetComponent<Flashlight>();
+                flashlightComp.canFocus = true;
 
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {

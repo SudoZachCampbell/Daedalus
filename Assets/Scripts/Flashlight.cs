@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
+    public bool canFocus = true;
     [SerializeField]
     private GameObject[] spotLights;
     [SerializeField]
@@ -41,17 +42,20 @@ public class Flashlight : MonoBehaviour
 
     public void FocusBeam(bool focus)
     {
-        foreach (var light in spotLights.Select(x => x.GetComponent<Light>()))
+        if (canFocus)
         {
-            if (focus)
+            foreach (var light in spotLights.Select(x => x.GetComponent<Light>()))
             {
-                light.range = focusRange;
-                light.spotAngle = focusSpotAngle;
-            }
-            else
-            {
-                light.range = normalRange;
-                light.spotAngle = normalSpotAngle;
+                if (focus)
+                {
+                    light.range = focusRange;
+                    light.spotAngle = focusSpotAngle;
+                }
+                else
+                {
+                    light.range = normalRange;
+                    light.spotAngle = normalSpotAngle;
+                }
             }
         }
     }

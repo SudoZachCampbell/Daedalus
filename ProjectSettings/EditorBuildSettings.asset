@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SplashMenu.unity
     guid: 85574c8da9b93bc42a41d793f63857b4
+  - enabled: 1
+    path: Assets/Scenes/NewLabyrinthScene.unity
+    guid: 6ca4a5d4d8eb5f141901e9ffe204899b
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/LabyrinthScene.unity
+    guid: aaa52fe31dea4f7719fc0797320c349a
   m_configObjects: {}
